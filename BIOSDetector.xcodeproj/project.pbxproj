@@ -1,0 +1,359 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7408EFCE1D240B9100CBD1A9 /* background_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7408EFCD1D240B9100CBD1A9 /* background_1.png */; };
+		744BE5951D168A8700FEEAA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744BE5941D168A8700FEEAA9 /* AppDelegate.swift */; };
+		744BE59C1D168A8700FEEAA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 744BE59B1D168A8700FEEAA9 /* Assets.xcassets */; };
+		744BE59F1D168A8700FEEAA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 744BE59D1D168A8700FEEAA9 /* LaunchScreen.storyboard */; };
+		744BE5A71D168B3500FEEAA9 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 744BE5A61D168B3500FEEAA9 /* CoreImage.framework */; };
+		744BE5A91D168B4200FEEAA9 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 744BE5A81D168B4200FEEAA9 /* libstdc++.6.0.9.tbd */; };
+		744BE5AB1D168B6900FEEAA9 /* XMCCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744BE5AA1D168B6900FEEAA9 /* XMCCamera.swift */; };
+		744BE5AF1D168F6500FEEAA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 744BE5AE1D168F6500FEEAA9 /* Main.storyboard */; };
+		744BE5B11D168F6E00FEEAA9 /* XMCCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744BE5B01D168F6E00FEEAA9 /* XMCCameraViewController.swift */; };
+		744BE5B31D16913100FEEAA9 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 744BE5B21D16913100FEEAA9 /* opencv2.framework */; };
+		744BE5B81D16914B00FEEAA9 /* CVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 744BE5B41D16914B00FEEAA9 /* CVWrapper.mm */; };
+		744BE5B91D16914B00FEEAA9 /* Detector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 744BE5B71D16914B00FEEAA9 /* Detector.cpp */; };
+		744BE5CC1D16980300FEEAA9 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 744BE5CB1D16980300FEEAA9 /* UIImage+OpenCV.mm */; };
+		744BE5D21D169C0100FEEAA9 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 744BE5D11D169C0100FEEAA9 /* test.png */; };
+		744BE5D61D16A0F300FEEAA9 /* IMG_0008.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 744BE5D51D16A0F300FEEAA9 /* IMG_0008.JPG */; };
+		744BE5D81D16A28100FEEAA9 /* test.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 744BE5D71D16A28100FEEAA9 /* test.JPG */; };
+		744BE5DA1D16A45600FEEAA9 /* one.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 744BE5D91D16A45600FEEAA9 /* one.jpg */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7408EFCD1D240B9100CBD1A9 /* background_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_1.png; sourceTree = "<group>"; };
+		744BE5911D168A8700FEEAA9 /* BIOSDetector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BIOSDetector.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		744BE5941D168A8700FEEAA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		744BE59B1D168A8700FEEAA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		744BE59E1D168A8700FEEAA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		744BE5A01D168A8700FEEAA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		744BE5A61D168B3500FEEAA9 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		744BE5A81D168B4200FEEAA9 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
+		744BE5AA1D168B6900FEEAA9 /* XMCCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMCCamera.swift; sourceTree = "<group>"; };
+		744BE5AE1D168F6500FEEAA9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		744BE5B01D168F6E00FEEAA9 /* XMCCameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMCCameraViewController.swift; sourceTree = "<group>"; };
+		744BE5B21D16913100FEEAA9 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		744BE5B41D16914B00FEEAA9 /* CVWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CVWrapper.mm; sourceTree = "<group>"; };
+		744BE5B51D16914B00FEEAA9 /* CVWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVWrapper.h; sourceTree = "<group>"; };
+		744BE5B61D16914B00FEEAA9 /* Detector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Detector.h; sourceTree = "<group>"; };
+		744BE5B71D16914B00FEEAA9 /* Detector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Detector.cpp; sourceTree = "<group>"; };
+		744BE5CA1D16980300FEEAA9 /* UIImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OpenCV.h"; sourceTree = "<group>"; };
+		744BE5CB1D16980300FEEAA9 /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
+		744BE5D11D169C0100FEEAA9 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
+		744BE5D51D16A0F300FEEAA9 /* IMG_0008.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0008.JPG; sourceTree = "<group>"; };
+		744BE5D71D16A28100FEEAA9 /* test.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.JPG; sourceTree = "<group>"; };
+		744BE5D91D16A45600FEEAA9 /* one.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = one.jpg; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		744BE58E1D168A8700FEEAA9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				744BE5B31D16913100FEEAA9 /* opencv2.framework in Frameworks */,
+				744BE5A91D168B4200FEEAA9 /* libstdc++.6.0.9.tbd in Frameworks */,
+				744BE5A71D168B3500FEEAA9 /* CoreImage.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		744BE5881D168A8700FEEAA9 = {
+			isa = PBXGroup;
+			children = (
+				744BE5A81D168B4200FEEAA9 /* libstdc++.6.0.9.tbd */,
+				744BE5B21D16913100FEEAA9 /* opencv2.framework */,
+				744BE5A61D168B3500FEEAA9 /* CoreImage.framework */,
+				744BE5931D168A8700FEEAA9 /* BIOSDetector */,
+				744BE5921D168A8700FEEAA9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		744BE5921D168A8700FEEAA9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				744BE5911D168A8700FEEAA9 /* BIOSDetector.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		744BE5931D168A8700FEEAA9 /* BIOSDetector */ = {
+			isa = PBXGroup;
+			children = (
+				744BE5CA1D16980300FEEAA9 /* UIImage+OpenCV.h */,
+				744BE5CB1D16980300FEEAA9 /* UIImage+OpenCV.mm */,
+				744BE5B41D16914B00FEEAA9 /* CVWrapper.mm */,
+				744BE5B51D16914B00FEEAA9 /* CVWrapper.h */,
+				744BE5B61D16914B00FEEAA9 /* Detector.h */,
+				744BE5B71D16914B00FEEAA9 /* Detector.cpp */,
+				744BE5AE1D168F6500FEEAA9 /* Main.storyboard */,
+				744BE5941D168A8700FEEAA9 /* AppDelegate.swift */,
+				744BE5AA1D168B6900FEEAA9 /* XMCCamera.swift */,
+				744BE5B01D168F6E00FEEAA9 /* XMCCameraViewController.swift */,
+				744BE59B1D168A8700FEEAA9 /* Assets.xcassets */,
+				744BE59D1D168A8700FEEAA9 /* LaunchScreen.storyboard */,
+				744BE5D91D16A45600FEEAA9 /* one.jpg */,
+				744BE5A01D168A8700FEEAA9 /* Info.plist */,
+				744BE5D11D169C0100FEEAA9 /* test.png */,
+				744BE5D71D16A28100FEEAA9 /* test.JPG */,
+				744BE5D51D16A0F300FEEAA9 /* IMG_0008.JPG */,
+				7408EFCD1D240B9100CBD1A9 /* background_1.png */,
+			);
+			path = BIOSDetector;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		744BE5901D168A8700FEEAA9 /* BIOSDetector */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 744BE5A31D168A8700FEEAA9 /* Build configuration list for PBXNativeTarget "BIOSDetector" */;
+			buildPhases = (
+				744BE58D1D168A8700FEEAA9 /* Sources */,
+				744BE58E1D168A8700FEEAA9 /* Frameworks */,
+				744BE58F1D168A8700FEEAA9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BIOSDetector;
+			productName = BIOSDetector;
+			productReference = 744BE5911D168A8700FEEAA9 /* BIOSDetector.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		744BE5891D168A8700FEEAA9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Dinh Quang Hieu";
+				TargetAttributes = {
+					744BE5901D168A8700FEEAA9 = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = BH46VD9229;
+					};
+				};
+			};
+			buildConfigurationList = 744BE58C1D168A8700FEEAA9 /* Build configuration list for PBXProject "BIOSDetector" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 744BE5881D168A8700FEEAA9;
+			productRefGroup = 744BE5921D168A8700FEEAA9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				744BE5901D168A8700FEEAA9 /* BIOSDetector */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		744BE58F1D168A8700FEEAA9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				744BE5AF1D168F6500FEEAA9 /* Main.storyboard in Resources */,
+				744BE59F1D168A8700FEEAA9 /* LaunchScreen.storyboard in Resources */,
+				744BE59C1D168A8700FEEAA9 /* Assets.xcassets in Resources */,
+				744BE5D81D16A28100FEEAA9 /* test.JPG in Resources */,
+				7408EFCE1D240B9100CBD1A9 /* background_1.png in Resources */,
+				744BE5D61D16A0F300FEEAA9 /* IMG_0008.JPG in Resources */,
+				744BE5DA1D16A45600FEEAA9 /* one.jpg in Resources */,
+				744BE5D21D169C0100FEEAA9 /* test.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		744BE58D1D168A8700FEEAA9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				744BE5B91D16914B00FEEAA9 /* Detector.cpp in Sources */,
+				744BE5AB1D168B6900FEEAA9 /* XMCCamera.swift in Sources */,
+				744BE5951D168A8700FEEAA9 /* AppDelegate.swift in Sources */,
+				744BE5B81D16914B00FEEAA9 /* CVWrapper.mm in Sources */,
+				744BE5CC1D16980300FEEAA9 /* UIImage+OpenCV.mm in Sources */,
+				744BE5B11D168F6E00FEEAA9 /* XMCCameraViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		744BE59D1D168A8700FEEAA9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				744BE59E1D168A8700FEEAA9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		744BE5A11D168A8700FEEAA9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		744BE5A21D168A8700FEEAA9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		744BE5A41D168A8700FEEAA9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = BIOSDetector/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dqhieu.BIOSDetector;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "BIOSDetector-Bridging-Header.h";
+			};
+			name = Debug;
+		};
+		744BE5A51D168A8700FEEAA9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = BIOSDetector/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dqhieu.BIOSDetector;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "BIOSDetector-Bridging-Header.h";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		744BE58C1D168A8700FEEAA9 /* Build configuration list for PBXProject "BIOSDetector" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				744BE5A11D168A8700FEEAA9 /* Debug */,
+				744BE5A21D168A8700FEEAA9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		744BE5A31D168A8700FEEAA9 /* Build configuration list for PBXNativeTarget "BIOSDetector" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				744BE5A41D168A8700FEEAA9 /* Debug */,
+				744BE5A51D168A8700FEEAA9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 744BE5891D168A8700FEEAA9 /* Project object */;
+}
