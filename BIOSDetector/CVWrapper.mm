@@ -18,13 +18,13 @@ using namespace std;
 
 @implementation CVWrapper
 
-+ (UIImage*)processImageWithOpenCV:(UIImage*)inputImage {
++ (NSString*)processImageWithOpenCV:(UIImage*)inputImage {
     Mat mat = [inputImage CVMat];
-    //std::string result = detect(mat);
-    cv::Mat stitchedMat = detect (mat);
-    UIImage* result =  [UIImage imageWithCVMat:stitchedMat];
-    return result;
-    //return  [NSString stringWithCString:result.c_str() encoding:[NSString defaultCStringEncoding]];;
+    std::string result = detect(mat);
+    //cv::Mat stitchedMat = detect (mat);
+    //UIImage* result =  [UIImage imageWithCVMat:stitchedMat];
+    //return result;
+    return  [NSString stringWithCString:result.c_str() encoding:[NSString defaultCStringEncoding]];;
 }
 
 @end

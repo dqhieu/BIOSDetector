@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BIOSDetector/XMCCameraViewController.swift"
-            timestampString = "488913783.515756"
+            timestampString = "489395982.617736"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "onStartDetecting(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BIOSDetector/Detector.cpp"
-            timestampString = "489076173.778688"
+            timestampString = "489395626.775867"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "305"
-            endingLineNumber = "305"
+            startingLineNumber = "554"
+            endingLineNumber = "554"
             landmarkName = "getRect(Mat input, string&amp; text)"
             landmarkType = "7">
          </BreakpointContent>

@@ -67,15 +67,234 @@ cv::Mat detectBorder(cv::Mat input) {
     
 }
 
+Rect *findDot(Mat input, int** mark, int i, int j) {
+    if (mark[i][j] == 1 || input.at<bool>(i, j) == 1)
+        return NULL;
+    
+    const int vi[] = {1, 0, 0, -1};
+    const int vj[] = {0, 1, -1, 0};
+    int n = input.rows;
+    int m = input.cols;
+    
+    int* qi = new int[n*m];
+    int* qj = new int[n*m];
+    
+    int maxi = 0, maxj = 0;
+    int mini = n, minj = m;
+    
+    qi[0] = i;
+    qj[0] = j;
+    
+    Rect *bound = NULL;
+    int front = 0, rear = 1;
+    while (front < rear) {
+        int _i = qi[front];
+        int _j = qj[front];
+        front++;
+        for (int k = 0; k < 4; ++k) {
+            int ii = _i+vi[k];
+            int jj = _j+vj[k];
+            
+            if (0 <= ii && ii < n && 0 <= jj && jj < m) {
+                if (mark[ii][jj] == 0 && input.at<bool>(ii, jj) == 0) {
+                    mark[ii][jj] = 1;
+                    if (mini > ii) mini = ii;
+                    if (minj > jj) minj = jj;
+                    if (maxi < ii) maxi = ii;
+                    if (maxj < jj) maxj = jj;
+                    
+                    rear++;
+                    qi[rear] = ii;
+                    qj[rear] = jj;
+                }
+            }
+        }
+    }
+    
+    delete[] qi;
+    delete[] qj;
+    
+    if ((maxi - mini > 0) && (maxi - mini <= 30) &&
+        (maxj - minj > 0) && (maxj - minj <= 30)) {
+        
+        double count = 0;
+        for (int i = mini; i < maxi; i++) {
+            for (int j = minj; j < maxj; j++) {
+                if (input.at<bool>(i, j) == 0) {
+                    count++;
+                }
+            }
+        }
+        
+        if (mini > n / 2 && minj > m / 2) {
+        
+            double x = count / ((maxi - mini) * (maxj - minj));
+            if (x > 0.8) {
+                //printf("s: %f\n", x);
+                bound = new Rect(minj, mini, maxj-minj, maxi-mini);
+            }
+        }
+    }
+    
+    //if ((maxi - mini > 0) && (maxj - minj > 0))
+    //    bound = new Rect(minj, mini, maxj-minj, maxi-mini);
+    
+    return bound;
+    
+}
 
-cv::Mat detect(cv::Mat & img)
+
+cv::Mat eraseDot(cv::Mat img) {
+    
+    int n = img.rows;
+    int m = img.cols;
+    
+    int** mark = new int*[n];
+    for (int i = 0; i < n; i++)
+    {
+        mark[i] = new int[m];
+        for (int j = 0; j < m; j++) {
+            mark[i][j] = 0;
+        }
+    }
+    
+    
+    
+    objects = *new vector<Rect>();
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            
+            Rect* rect = findDot(img, mark, i, j);
+            if (rect != NULL && rect->area() > 0) {
+                objects.push_back(*rect);
+            }
+            
+        }
+    }
+    
+    cvtColor(img, img, CV_GRAY2RGB);
+    
+    /*
+    printf("rect: %lu", objects.size());
+    for (Rect rect : objects) {
+        rectangle(img, rect.tl(), rect.br(), *new Scalar(0,255,0), 1);
+    }
+    
+    return img;
+    */
+    
+    for (Rect rect : objects) {
+        for (int i = rect.y; i <= rect.y + rect.height; i++) {
+            for (int j = rect.x; j <= rect.x + rect.width; j++) {
+                img.data[img.channels()*(img.cols*i + j) + 0] = 255;
+                img.data[img.channels()*(img.cols*i + j) + 1] = 255;
+                img.data[img.channels()*(img.cols*i + j) + 2] = 255;
+            }
+        }
+    }
+    
+    cvtColor(img, img, CV_RGB2GRAY);
+    
+    
+    return img;
+}
+
+bool isSplited(Rect r1, Rect r2) {
+    
+    int r1left = r1.x;
+    int r1top = r1.y;
+    int r1right = r1.x + r1.width;
+    int r1bottom = r1.y + r1.height;
+    
+    int r2left = r2.x;
+    int r2top = r2.y;
+    int r2right = r2.x + r2.width;
+    int r2bottom = r2.y + r2.height;
+    
+    if (r1bottom < r2top) {
+        if ((r2right > r1left && r2right <= r1right) || (r2left >= r1left && r2left < r1right))
+            return true;
+    }
+    return false;
+}
+
+Rect connect(Rect r1, Rect r2) {
+    int r1left = r1.x;
+    int r1top = r1.y;
+    int r1right = r1.x + r1.width;
+    int r1bottom = r1.y + r1.height;
+    
+    int r2left = r2.x;
+    int r2top = r2.y;
+    int r2right = r2.x + r2.width;
+    int r2bottom = r2.y + r2.height;
+    
+    if (r2left > r1left && r2left < r1right) {
+        return *new Rect(*new Point(r1left, r1top), *new Point(r2right, r2bottom));
+    }
+    else {
+        return *new Rect(*new Point(r2left, r1top), *new Point(r1right, r2bottom));
+    }
+}
+
+void connectRect(vector<Rect> &objects) {
+    
+    long n = objects.size();
+    
+    bool *a = new bool[n];
+    
+    for (int i = 0; i < n; i++)
+        a[i] = false;
+    
+    
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (a[i] == false && a[j] == false) {
+                Rect r1 = objects[i];
+                Rect r2 = objects[j];
+                if (isSplited(r1, r2)) {
+                    Rect r = connect(r1, r2);
+                    objects.push_back(r);
+                    a[i] = true;
+                    a[j] = true;
+                }
+            }
+        }
+    }
+    
+    vector<Rect> newObj = *new vector<Rect>();
+    for (int i = 0; i < n; i++) {
+        if (a[i] == false) {
+            newObj.push_back(objects[i]);
+        }
+    }
+    for (int i = n; i < objects.size(); i++) {
+        newObj.push_back(objects[i]);
+    }
+    
+    objects.clear();
+    for (int i = 0; i < newObj.size(); i++)
+        objects.push_back(newObj[i]);
+}
+
+std::string detect(cv::Mat & img)
 {
-    resize(img, img, *new Size(240, 360));
+    resize(img, img, *new Size(180, 360));
     
     cvtColor(img, img, COLOR_BGR2GRAY);
     
     GaussianBlur(img, img, *new Size(9, 9), 2, 2);
     adaptiveThreshold(img, img, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY, 21, 2);
+    
+    // delete the dot
+    
+    img = eraseDot(img);
+    
+    
+    
+    //return img;
+    
+    
     int dilation_size = 1;
     Mat element1 = getStructuringElement(MORPH_RECT, *new Size(2 * dilation_size + 1, 2 * dilation_size + 1));
     dilate(img, img, element1);
@@ -84,8 +303,21 @@ cv::Mat detect(cv::Mat & img)
     Mat element = getStructuringElement(MORPH_RECT, *new Size(2 * erosion_size + 1, 2 * erosion_size + 1));
     erode(img, img, element);
     
+    
     int n = img.rows;
     int m = img.cols;
+    
+    /*
+    for (int j = 0; j < m; j++) {
+        for (int i = 0; i < n; i++) {
+            if (img.at<unsigned char>(i,j) > 127) {
+                printf("0");
+            } else printf("1");
+            //printf("%d ", img.at<unsigned char>(i,j));
+        }
+        printf("\n");
+    }
+    */
     
     
     int** mark = new int*[n];
@@ -104,12 +336,15 @@ cv::Mat detect(cv::Mat & img)
         for (int j = 0; j < m; ++j) {
             
             Rect* rect = findBound(img, mark, i, j);
-            if (rect != NULL && rect->area() > 50) {
+            if (rect != NULL && rect->area() > 1000) {
                 objects.push_back(*rect);
             }
             
         }
     }
+    
+    connectRect(objects);
+    //printf("size: %lu\n", objects.size());
     
     //return img;
     
@@ -165,13 +400,26 @@ Rect *findBound(Mat img, int** mark, int i, int j) {
     delete[] qj;
     
     if (maxi - mini > 40) {
-        bound = new Rect(minj, mini, maxj-minj, maxi-mini);
+        double x = (double)(maxi - mini) * (maxj - minj) / (n*m);
+        if (x < 0.5)
+            bound = new Rect(minj, mini, maxj-minj, maxi-mini);
     }
     
     return bound;
 }
 
-cv::Mat extractDigits(Mat img) {
+std::string extractDigits(Mat img) {
+    
+    // sort rect by x-axis (ngang)
+    for (int i = 0; i < objects.size(); i++) {
+        for (int j = i + 1; j < objects.size(); j++) {
+            if (objects[i].x > objects[j].x) {
+                Rect tmp = objects[i];
+                objects[i] = objects[j];
+                objects[j] = tmp;
+            }
+        }
+    }
     
     string strres = "";
     cvtColor(img, img, COLOR_GRAY2RGB);
@@ -203,7 +451,8 @@ cv::Mat extractDigits(Mat img) {
     }
     
     result = strres;
-    return img;
+    return result;
+    //return img;
 
 }
 
@@ -306,8 +555,8 @@ Rect *getRect(Mat input, string& text) {
     */
     double *c = new double[7];
     for (int k = 0; k < 7; k++) {
-        printf("%d %d %d\n", k, input.rows, input.cols);
-        printf("%d %d %d %d %d\n", k, r[k].x, r[k].width, r[k].y, r[k].height );
+        //printf("%d %d %d\n", k, input.rows, input.cols);
+        //printf("%d %d %d %d %d\n", k, r[k].x, r[k].width, r[k].y, r[k].height );
         Mat tmp = *new Mat(input, r[k]);
         double cnt = 0;
         for (int i = 0; i < tmp.rows; ++i) {
@@ -322,7 +571,7 @@ Rect *getRect(Mat input, string& text) {
         }
         
         c[k] = cnt / (double)r[k].area();
-        printf("%f\n", c[k]);
+        //printf("%f\n", c[k]);
     }
     
     int const_led[10][7] = {
@@ -357,8 +606,10 @@ Rect *getRect(Mat input, string& text) {
         }
     }
     
-    //if (m / 2.5 > n)
-    //    digit = 1;
+    printf("size: %d %d\n", m, n);
+    
+    if (m / 10 > n)
+        digit = 1;
     
     text = std::to_string(digit);
     

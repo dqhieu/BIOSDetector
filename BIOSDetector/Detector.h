@@ -9,9 +9,11 @@
 
 #include <opencv2/opencv.hpp>
 
-cv::Mat detect(cv::Mat & images);
+std::string detect(cv::Mat & images);
 cv::Mat detectBorder(cv::Mat input);
 cv::Rect *findBound(cv::Mat img, int** mark, int i, int j);
-cv::Mat extractDigits(cv::Mat img);
+std::string extractDigits(cv::Mat img);
 std::string getText(cv::Mat input);
 cv::Rect* getRect(cv::Mat input, std::string& txt);
+cv::Mat eraseDot(cv::Mat img);
+cv::Rect *findDot(cv::Mat input, int** mark, int i, int j);

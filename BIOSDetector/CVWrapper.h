@@ -15,6 +15,6 @@
 
 @interface CVWrapper : NSObject
 
-+ (UIImage*)processImageWithOpenCV:(UIImage*)inputImage;
++ (NSString*)processImageWithOpenCV:(UIImage*)inputImage;
 
 @end

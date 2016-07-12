@@ -23,14 +23,18 @@ class XMCCameraViewController: UIViewController, XMCCameraDelegate {
     @IBOutlet weak var imgViewResult: UIImageView!
     @IBOutlet weak var background: UIImageView!
     
+    @IBOutlet weak var lblResult: UILabel!
     var preview: AVCaptureVideoPreviewLayer?
     
     var camera: XMCCamera?
     var status: Status = .Preview
     
+    var userDefault:NSUserDefaults!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initializeCamera()
+        userDefault = NSUserDefaults()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -46,7 +50,7 @@ class XMCCameraViewController: UIViewController, XMCCameraDelegate {
     func establishVideoPreviewArea() {
         self.preview = AVCaptureVideoPreviewLayer(session: self.camera?.session)
         self.preview?.videoGravity = AVLayerVideoGravityResizeAspectFill
-        self.preview?.frame = self.cameraPreview.alignmentRectForFrame(CGRect(x: 0, y: 0, width: 288, height: 158))
+        self.preview?.frame = self.cameraPreview.alignmentRectForFrame(CGRect(x: 0, y: 0, width: 288, height: 144))
         self.preview?.cornerRadius = 0
         self.cameraPreview.layer.addSublayer(self.preview!)
     }
@@ -86,7 +90,7 @@ class XMCCameraViewController: UIViewController, XMCCameraDelegate {
             })
         } else if self.status == .Still || self.status == .Error {
             background.hidden = false
-            UIView.animateWithDuration(0.1, animations: { () -> Void in
+            UIView.animateWithDuration(0, animations: { () -> Void in
                 self.cameraStill.alpha = 0.0;
                 self.cameraStatus.alpha = 0.0;
                 self.cameraPreview.alpha = 1.0;
@@ -101,18 +105,24 @@ class XMCCameraViewController: UIViewController, XMCCameraDelegate {
     func onStartDetecting(image:UIImage) {
         background.hidden = true
         let rotated = image.imageRotatedByDegrees(90, flip: false)
-        let resized = resizeImage(rotated, targetSize: CGSizeMake(480, 720))
-        let cropped = cropImage(resized, size: CGSize(width: 210, height: 160))
+        let resized = resizeImage(rotated, targetSize: CGSizeMake(900, 1200))
+        let cropped = cropImage(resized, size: CGSize(width: 450, height: 225))
         self.cameraStill.image = cropped
         self.cameraStatus.text = "Detecting..."
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             
+            //let imageResult = CVWrapper.processImageWithOpenCV(UIImage(named: "1762.png"))
             let imageResult = CVWrapper.processImageWithOpenCV(cropped)
             
             dispatch_async(dispatch_get_main_queue()) {
                 
-                self.imgViewResult.image = imageResult
-                
+                //self.imgViewResult.image = imageResult
+                self.lblResult.text = imageResult
+                let strSender = self.userDefault.valueForKey("sender") as! String
+                self.userDefault.setValue(imageResult, forKey: strSender)
+                self.userDefault.synchronize()
+                self.camera?.stopCamera()
+                self.performSegueWithIdentifier("segueBack", sender: nil)
             }
         }
     }
@@ -125,7 +135,7 @@ class XMCCameraViewController: UIViewController, XMCCameraDelegate {
     
     func cameraSessionDidBegin() {
         self.cameraStatus.text = ""
-        UIView.animateWithDuration(0.1, animations: { () -> Void in
+        UIView.animateWithDuration(0, animations: { () -> Void in
             self.cameraStatus.alpha = 0.0
             self.cameraPreview.alpha = 1.0
             self.cameraCapture.alpha = 1.0
@@ -135,14 +145,14 @@ class XMCCameraViewController: UIViewController, XMCCameraDelegate {
     
     func cameraSessionDidStop() {
         self.cameraStatus.text = "Camera Stopped"
-        UIView.animateWithDuration(0.1, animations: { () -> Void in
+        UIView.animateWithDuration(0, animations: { () -> Void in
             self.cameraStatus.alpha = 1.0
             self.cameraPreview.alpha = 0.0
         })
     }
     
     func cropImage(screenshot: UIImage, size: CGSize) -> UIImage {
-        let crop = CGRectMake(135, 280, size.width, size.height)
+        let crop = CGRectMake(220, 490, size.width, size.height)
         let cgImage = CGImageCreateWithImageInRect(screenshot.CGImage, crop)
         let image: UIImage = UIImage(CGImage: cgImage!)
         return image

@@ -12,10 +12,12 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var userDefault:NSUserDefaults!
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        userDefault = NSUserDefaults()
         return true
     }
 
@@ -39,6 +41,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        
+        userDefault.setValue(nil, forKey: "height")
+        userDefault.setValue(nil, forKey: "weight")
+        userDefault.setValue(nil, forKey: "pulse")
+        userDefault.setValue(nil, forKey: "systolic")
+        userDefault.setValue(nil, forKey: "diastolic")
+        userDefault.setValue(nil, forKey: "sender")
+ 
     }
 
 
